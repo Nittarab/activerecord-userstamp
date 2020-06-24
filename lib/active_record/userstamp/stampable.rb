@@ -102,22 +102,22 @@ module ActiveRecord::Userstamp::Stampable
       if options[:polymorphic]
         relation_options = options.reverse_merge(polymorphic: true)
 
-        belongs_to :creator, relation_options if
+        belongs_to :creator, **relation_options if
           associations.first
-        belongs_to :updater, relation_options if
+        belongs_to :updater, **relation_options if
           associations.second
-        belongs_to :deleter, relation_options if
+        belongs_to :deleter, **relation_options if
           associations.third
 
       else
         klass = stamper_class.try(:name)
         relation_options = options.reverse_merge(class_name: klass)
 
-        belongs_to :creator, relation_options.reverse_merge(foreign_key: config.creator_attribute) if
+        belongs_to :creator, **relation_options.reverse_merge(foreign_key: config.creator_attribute) if
           associations.first
-        belongs_to :updater, relation_options.reverse_merge(foreign_key: config.updater_attribute) if
+        belongs_to :updater, **relation_options.reverse_merge(foreign_key: config.updater_attribute) if
           associations.second
-        belongs_to :deleter, relation_options.reverse_merge(foreign_key: config.deleter_attribute) if
+        belongs_to :deleter, **relation_options.reverse_merge(foreign_key: config.deleter_attribute) if
           associations.third
       end
     end
