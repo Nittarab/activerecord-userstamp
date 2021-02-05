@@ -47,4 +47,14 @@ module ActiveRecord::Userstamp::Configuration
   #   By default, this is set to +:deleter_id+.
   mattr_accessor :deleter_attribute
   self.deleter_attribute = :deleter_id
+
+  # !@attribute [rw] user_id_default_class
+  #   Determines the type of the columns in the database which stores the name of the 
+  #   deleter, updater and creator
+  #
+  #   By default, this is set to +:integer+.
+
+  mattr_accessor :user_id_default_class
+  self.user_id_default_class = :integer
+
 end
